@@ -1,0 +1,537 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ostrEmailText" Type="OutArgument(x:String)" />
+    <x:Property Name="iostrConfirmationRange" Type="InOutArgument(x:String)" />
+    <x:Property Name="iostrInputFilePath" Type="InOutArgument(x:String)" />
+    <x:Property Name="ioMailSubject" Type="InOutArgument(x:String)" />
+    <x:Property Name="iostrConfirmMailBody" Type="InOutArgument(x:String)" />
+    <x:Property Name="iostrFolderSuccess" Type="InOutArgument(x:String)" />
+    <x:Property Name="iostrFolderFailed" Type="InOutArgument(x:String)" />
+    <x:Property Name="ostrAmmendmentMailBody" Type="OutArgument(x:String)" />
+    <x:Property Name="ostrCancellationMailBody" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1410.4,5810.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="40">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Mail.Outlook.Enums</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="64">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="This Sequence will Read all mails and save attachment of pdf type from them.&#xA;If the mail have no attachment of pdf type then it will save mail body as Text.&#xA;These both type of Files will further used for extraction by the invoked workflows.&#xA;Finally this sequence will move the mail in the corresponding folders." DisplayName="Sequence-To Read Mail, Save Attachment From Them And Finally Move Mails" sap:VirtualizedContainerService.HintSize="892.8,5745.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="lstmailOutlookMsg" />
+      <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="ienumPDFAttachments" />
+      <Variable x:TypeArguments="s:String[]" Name="arrstrOfTextFiles" />
+      <Variable x:TypeArguments="s:String[]" Name="arrstrOfPDFFile" />
+      <Variable x:TypeArguments="x:String" Name="ostrStatusOfMail" />
+      <Variable x:TypeArguments="x:String" Name="strMailFolder" />
+      <Variable x:TypeArguments="x:String" Name="strSubjectFilter" />
+      <Variable x:TypeArguments="x:String" Name="strNumberOfMails" />
+      <Variable x:TypeArguments="x:String" Name="strLogFilePath" />
+      <Variable x:TypeArguments="x:String" Name="strLogFileMailBody" />
+      <Variable x:TypeArguments="x:String" Name="strLogFileText" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtLogFile" />
+      <Variable x:TypeArguments="x:Int32" Name="intCountForSuccess" />
+      <Variable x:TypeArguments="x:Int32" Name="intCountForFailed" />
+      <Variable x:TypeArguments="x:String" Name="strClientEmail" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get Required Asset For The Project.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="830.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Get Required Asset For The Project.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrMailFolder">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strMailFolder" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrNumberOfMails">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strNumberOfMails" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrSubjectFilter">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strSubjectFilter" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrLogFilePath">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strLogFilePath" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrConfirmationNumberRange">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrConfirmationRange" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrSavedInputFilesPath">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrInputFilePath" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrMailSubject">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ioMailSubject" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrConfirmationBodyMail">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrConfirmMailBody" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrAmmendmentBodyMail">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ostrAmmendmentMailBody" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrCancellationBodyMail">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ostrCancellationMailBody" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrFolderSuccess">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrFolderSuccess" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrFolderFailed">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrFolderFailed" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrLogFileMailBody">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strLogFileMailBody" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrClientEmail">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strClientEmail" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:GetOutlookMailMessages Account="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Outlook Mail Messages To Process" Filter="[strSubjectFilter]" GetAttachements="False" sap:VirtualizedContainerService.HintSize="830.4,24.8" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="[strMailFolder]" MarkAsRead="False" Messages="[lstmailOutlookMsg]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="[Cint(strNumberOfMails)]" />
+    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each-Mail In List" sap:VirtualizedContainerService.HintSize="830.4,3880.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[lstmailOutlookMsg]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="snm:MailMessage">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="Mail" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="795.2,3755.2" sap2010:WorkflowViewState.IdRef="Sequence_31">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Body-For Each" sap:VirtualizedContainerService.HintSize="732.8,3643.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If Condition="[Mail.Attachments.Any]" DisplayName="If-The Mail Have Any Attachments Then DownLoad It Else Save Body As Text File" sap:VirtualizedContainerService.HintSize="670.4,2741.6" sap2010:WorkflowViewState.IdRef="If_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Sequence-To Download Attachment For Extraction" sap:VirtualizedContainerService.HintSize="636.8,1144" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:SaveMailAttachments Attachments="[ienumPDFAttachments]" DisplayName="Save Attachments Of PDF Type" ExcludeInlineAttachments="False" Filter=".pdf" FolderPath="[iostrInputFilePath]" sap:VirtualizedContainerService.HintSize="593.6,88" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_2" Message="[Mail]" OverwriteExisting="True" />
+                    <Sequence DisplayName="Sequence-Extract From Pdf" sap:VirtualizedContainerService.HintSize="593.6,926.4" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign DisplayName="Assign-To Get PDF Files Into Array" sap:VirtualizedContainerService.HintSize="531.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_9">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="s:String[]">[arrstrOfPDFFile]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(iostrInputFilePath)]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each-Files In The PDF Files Array" sap:VirtualizedContainerService.HintSize="531.2,572" sap2010:WorkflowViewState.IdRef="ForEach`1_12" Values="[arrstrOfPDFFile]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="PDF" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body-For Each" sap:VirtualizedContainerService.HintSize="496,447.2" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text" FileName="[PDF.ToString]" sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_4" Range="All" Text="[ostrEmailText]" />
+                              <Assign DisplayName="Assign-Subject Of Mail To Status" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[ostrStatusOfMail]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[Mail.Subject]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="To Extract Required Data.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="To Extract Required Data.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrEmailText">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="ostrEmailText" />
+                                  </InArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrStatus">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ostrStatusOfMail" />
+                                  </InOutArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="ostrRefrenceNumber" />
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="ioConfirmationRange">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrConfirmationRange" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrInputFilePath">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrInputFilePath" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrMailSubject">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ioMailSubject" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrConfirmMailBody">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrConfirmMailBody" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrAmmendmentMailBody">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ostrAmmendmentMailBody" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrCancellationMailBody">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ostrCancellationMailBody" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrFolderSuccess">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrFolderSuccess" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrFolderFailed">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrFolderFailed" />
+                                  </InOutArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="ostrEmailID" />
+                                  <OutArgument x:TypeArguments="x:String" x:Key="ostrStatus">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ostrStatusOfMail" />
+                                  </OutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrLogFilePath">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strLogFilePath" />
+                                  </InOutArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <ui:DeleteFolderX DisplayName="Delete Folder" sap:VirtualizedContainerService.HintSize="531.2,80.8" sap2010:WorkflowViewState.IdRef="DeleteFolderX_5" Path="[iostrInputFilePath]" Recursive="True" />
+                    </Sequence>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="636.8,1446.4" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:SaveOutlookMailMessage DisplayName="Save Outlook Mail Message As Text" FileName="[Mail.Subject]" Folder="[iostrInputFilePath]" sap:VirtualizedContainerService.HintSize="593.6,325.6" sap2010:WorkflowViewState.IdRef="SaveOutlookMailMessage_4" MailMessage="[Mail]" ReplaceExisting="True" SaveAsType="TextOnly" />
+                    <Sequence sap2010:Annotation.AnnotationText="This Sequence will save all Mail Body which does not have any pdf file in the form of text file and use work flow to extract data from it." DisplayName="Sequence-To Save Mail Body As Text File And Extract Data From It" sap:VirtualizedContainerService.HintSize="593.6,870.4" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign DisplayName="Assign-To Save Text File In Array" sap:VirtualizedContainerService.HintSize="531.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_10">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="s:String[]">[arrstrOfTextFiles]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(iostrInputFilePath)]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each-Text File In Array" sap:VirtualizedContainerService.HintSize="531.2,592.8" sap2010:WorkflowViewState.IdRef="ForEach`1_13" Values="[arrstrOfTextFiles]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="x:String">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:String" Name="TextFile" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body-For Each" sap:VirtualizedContainerService.HintSize="496,468" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:ReadTextFile File="{x:Null}" Content="[ostrEmailText]" DisplayName="Read Text File For Extraction" FileName="[TextFile]" sap:VirtualizedContainerService.HintSize="433.6,80.8" sap2010:WorkflowViewState.IdRef="ReadTextFile_5" />
+                              <Assign DisplayName="Assign-Status " sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[ostrStatusOfMail]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[Mail.Subject]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="To Extract Required Data.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="To Extract Required Data.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrEmailText">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="ostrEmailText" />
+                                  </InArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrStatus">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ostrStatusOfMail" />
+                                  </InOutArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="ostrRefrenceNumber" />
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="ioConfirmationRange">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrConfirmationRange" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrInputFilePath">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrInputFilePath" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrMailSubject">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ioMailSubject" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrConfirmMailBody">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrConfirmMailBody" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrAmmendmentMailBody">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ostrAmmendmentMailBody" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrCancellationMailBody">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="ostrCancellationMailBody" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrFolderSuccess">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrFolderSuccess" />
+                                  </InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrFolderFailed">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="iostrFolderFailed" />
+                                  </InOutArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="ostrEmailID" />
+                                  <OutArgument x:TypeArguments="x:String" x:Key="ostrStatus" />
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="iostrLogFilePath">
+                                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strLogFilePath" />
+                                  </InOutArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                    </Sequence>
+                    <ui:DeleteFolderX DisplayName="Delete Folder" sap:VirtualizedContainerService.HintSize="593.6,80.8" sap2010:WorkflowViewState.IdRef="DeleteFolderX_6" Path="[iostrInputFilePath]" Recursive="True">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:DeleteFolderX>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <If Condition="[System.Text.RegularExpressions.Regex.Match(ostrStatusOfMail,&quot;(?&lt;=Booking\s)\w+&quot;).Value = &quot;Cancelled&quot;]" DisplayName="If-The Mail Is Cancelled The Move To Failed Folder Else Processed Folder" sap:VirtualizedContainerService.HintSize="670.4,749.6" sap2010:WorkflowViewState.IdRef="If_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="476.8,299.2" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:MoveOutlookMessage Account="{x:Null}" DisplayName="Move Outlook Mail Message" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_1" MailFolder="[iostrFolderFailed]" MailMessage="[Mail]" />
+                    <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_13">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[intCountForFailed]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[intCountForFailed+1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="476.8,299.2" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:MoveOutlookMessage Account="{x:Null}" DisplayName="Move Outlook Mail To Processed Folder" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_2" MailFolder="[iostrFolderSuccess]" MailMessage="[Mail]" />
+                    <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_14">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[intCountForSuccess]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[intCountForSuccess+1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="830.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;All Mail Moved according to their status&quot;]" />
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtLogFile]" DisplayName="Read Log File Data " sap:VirtualizedContainerService.HintSize="830.4,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="[strLogFilePath+&quot;\Log File.xlsx&quot;]" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtLogFile]" DisplayName="For Each Row in Log File Data Table " sap:VirtualizedContainerService.HintSize="830.4,363.2" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body-For Each" sap:VirtualizedContainerService.HintSize="449.6,246.4" sap2010:WorkflowViewState.IdRef="Sequence_30">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:AppendLine File="{x:Null}" DisplayName="Append Line-To Text File Of Log File" FileName="[strLogFilePath+&quot;\LogFile.txt&quot;]" sap:VirtualizedContainerService.HintSize="387.2,134.4" sap2010:WorkflowViewState.IdRef="AppendLine_1" Text="[&quot;&lt;tr&gt;&lt;th&gt;&quot;+row(&quot;UNIQUE ID&quot;).ToString+&quot;&lt;/th&gt;&lt;th&gt;&quot;+row(&quot;Guest Name&quot;).ToString+&quot;&lt;/th&gt;&lt;th&gt;&quot;+row(&quot;Hotel Name&quot;).ToString+&quot;&lt;/th&gt;&lt;th&gt;&quot;+row(&quot;NO. of Adults&quot;).ToString+&quot;&lt;/th&gt;&lt;th&gt;&quot;+row(&quot;Room Type&quot;).ToString+&quot;&lt;/th&gt;&lt;th&gt;&quot;+row(&quot;Status&quot;).ToString+&quot;&lt;/th&gt;&lt;th&gt;&quot;+row(&quot;Booking Type&quot;).ToString+&quot;&lt;/th&gt;&lt;th&gt;&quot;+row(&quot;Updated Date Time&quot;).ToString+&quot;&lt;/th&gt;&lt;/tr&gt;&quot;]" UseDefaultEncoding="False" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachRow>
+    <ui:ReadTextFile File="{x:Null}" Content="[strLogFileText]" DisplayName="Read Log Text File" FileName="[strLogFilePath+&quot;\LogFile.txt&quot;]" sap:VirtualizedContainerService.HintSize="830.4,80.8" sap2010:WorkflowViewState.IdRef="ReadTextFile_6" />
+    <ui:DeleteFileX DisplayName="Delete Log Text File" sap:VirtualizedContainerService.HintSize="830.4,80.8" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[strLogFilePath+&quot;\LogFile.txt&quot;]" />
+    <TryCatch DisplayName="Try Catch-To Check Whether The Email Have Any Error Or Not" sap:VirtualizedContainerService.HintSize="830.4,380" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[String.Format(strLogFileMailBody,vbCrLf,vbCrLf,strLogFileText,intCountForSuccess,vbCrLf,intCountForFailed,vbCrLf,vbCrLf)]" DisplayName="Send Cancellation Mail " sap:VirtualizedContainerService.HintSize="333.6,148.8" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="[ioMailSubject]" To="aslambeg16@gmail.com">
+          <ui:SendOutlookMail.Files>
+            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+          </ui:SendOutlookMail.Files>
+        </ui:SendOutlookMail>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+            </ActivityAction.Argument>
+            <ui:LogMessage DisplayName="Error-Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[&quot;The Email Provided is not valid or unavailable&quot;]" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="830.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Log File has been sent to user&quot;]" />
+  </Sequence>
+</Activity>

@@ -1,0 +1,326 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="To_Send_The_Mail_To_The_Client" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="istrStatusOfMail" Type="InArgument(x:String)" />
+    <x:Property Name="istrGuestName" Type="InArgument(x:String)" />
+    <x:Property Name="istrHotelName" Type="InArgument(x:String)" />
+    <x:Property Name="istrRoomType" Type="InArgument(x:String)" />
+    <x:Property Name="istrNumberOfAdults" Type="InArgument(x:String)" />
+    <x:Property Name="istrRefrenceNumber" Type="InArgument(x:String)" />
+    <x:Property Name="istrLogFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="istrConfirmationRange" Type="InArgument(x:String)" />
+    <x:Property Name="istrInputFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="istrMailSubject" Type="InArgument(x:String)" />
+    <x:Property Name="istrConfirmMailBody" Type="InArgument(x:String)" />
+    <x:Property Name="istrAmmendmentBody" Type="InArgument(x:String)" />
+    <x:Property Name="istrCancelBody" Type="InArgument(x:String)" />
+    <x:Property Name="iostrFolderSuccess" Type="InOutArgument(x:String)" />
+    <x:Property Name="iostrFolderFailed" Type="InOutArgument(x:String)" />
+    <x:Property Name="istrStatus" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1410.4,4327.2</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>To_Send_The_Mail_To_The_Client_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="38">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="54">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="This sequence will send mail to the client according to their status" DisplayName="To Send The Mail To The Client" sap:VirtualizedContainerService.HintSize="661.6,4262.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="intConfirmationNumber" />
+      <Variable x:TypeArguments="x:String" Name="strStatus" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtOutputLogFile" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign DisplayName="Assign-Unique Confirmation Number" sap:VirtualizedContainerService.HintSize="599.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[intConfirmationNumber]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">[New Random().Next(Cint(istrConfirmationRange.Split("-")(0)),Cint(istrConfirmationRange.Split("-")(1)))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign-Status For The Log File" sap:VirtualizedContainerService.HintSize="599.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[strStatus]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[istrStatus+": "+System.Text.RegularExpressions.Regex.Match(istrStatusOfMail,"(?&lt;=Booking\s)\w+").Value]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:IfElseIf DisplayName="Else If-The Status Of Mail Is Confirm" sap:VirtualizedContainerService.HintSize="599.2,3082.4" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[istrStatusOfMail.Contains(&quot;Confirmation&quot;)]">
+            <ui:IfElseIfBlock.Then>
+              <Sequence DisplayName="Body-To Send Confirmation Mail" sap:VirtualizedContainerService.HintSize="499.2,489.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <TryCatch DisplayName="Try Catch-Will Catch Any Error In The Email Id" sap:VirtualizedContainerService.HintSize="436.8,377.6" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                  <TryCatch.Try>
+                    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[String.Format(istrConfirmMailBody,istrGuestName.Split(&quot; &quot;)(0),vbCrLf,istrRoomType,intConfirmationNumber,vbCrLf,vbCrLf,istrHotelName)]" DisplayName="Send Confrimation Mail" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_5" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[istrMailSubject]" To="aslambeg16@gmail.com">
+                      <ui:SendOutlookMail.Files>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                      </ui:SendOutlookMail.Files>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:SendOutlookMail>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                        </ActivityAction.Argument>
+                        <ui:LogMessage DisplayName="Error-Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;The Email is not valid or not available&quot;]" />
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+              </Sequence>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[istrStatusOfMail.Contains(&quot;Amendment&quot;)]">
+            <ui:IfElseIfBlock.Then>
+              <Sequence DisplayName="Body-To Send Mail If The Status Is Amendment" sap:VirtualizedContainerService.HintSize="545.6,1745.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="sd:DataTable" Name="dtAmendmentData" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="dtAmendmentDetails" />
+                  <Variable x:TypeArguments="x:String" Name="strAmendmentDetailsText" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:BuildDataTable DataTable="[dtAmendmentData]" DisplayName="Build Data Table For Amendment Details" sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Guest_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Hotel_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Number_x0020_of_x0020_Adults&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Room_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{istrGuestName,istrHotelName,istrNumberOfAdults,istrRoomType}]" DataTable="[dtAmendmentData]" DisplayName="Add Data Row For Amendment Details" sap:VirtualizedContainerService.HintSize="483.2,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dtAmendmentData]" DisplayName="Write Amendment Details In Excel File" sap:VirtualizedContainerService.HintSize="483.2,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Sheet1" WorkbookPath="[istrInputFilePath+&quot;\Ammendment.xlsx&quot;]" />
+                <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtAmendmentDetails]" DisplayName="Read Amendment Excel File" sap:VirtualizedContainerService.HintSize="483.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="[istrInputFilePath+&quot;\Ammendment.xlsx&quot;]" />
+                <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtAmendmentDetails]" DisplayName="For Each Row in Amendment Details Data Table " sap:VirtualizedContainerService.HintSize="483.2,362.4" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                  <ui:ForEachRow.Body>
+                    <ActivityAction x:TypeArguments="sd:DataRow">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body-For Each" sap:VirtualizedContainerService.HintSize="449.6,246.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:AppendLine File="{x:Null}" DisplayName="Append Line-To Text File Of Amendment Details" FileName="[istrInputFilePath+&quot;\AmendmentDetails.txt&quot;]" sap:VirtualizedContainerService.HintSize="387.2,134.4" sap2010:WorkflowViewState.IdRef="AppendLine_1" Text="[&quot;&lt;tr&gt;&lt;th&gt;&quot;+row(&quot;Guest Name&quot;).ToString+&quot;&lt;/th&gt;&lt;th&gt;&quot;+row(&quot;Hotel Name&quot;).ToString+&quot;&lt;/th&gt;&lt;th&gt;&quot;+row(&quot;Number of Adults&quot;).ToString+&quot;&lt;/th&gt;&lt;th&gt;&quot;+row(&quot;Room Type&quot;).ToString+&quot;&lt;/th&gt;&lt;/tr&gt;&quot;]" UseDefaultEncoding="False" />
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEachRow.Body>
+                </ui:ForEachRow>
+                <ui:ReadTextFile File="{x:Null}" Content="[strAmendmentDetailsText]" DisplayName="Read Amendment Details Text File" FileName="[istrInputFilePath+&quot;\AmendmentDetails.txt&quot;]" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+                <ui:DeleteFileX DisplayName="Delete Amendment Detail Text File" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[istrInputFilePath+&quot;\AmendmentDetails.txt&quot;]" />
+                <TryCatch DisplayName="Try Catch-To Check Whether The Email is Valid Or Not" sap:VirtualizedContainerService.HintSize="483.2,377.6" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                  <TryCatch.Try>
+                    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[String.Format(istrAmmendmentBody,istrGuestName.Split(&quot; &quot;)(0),vbCrLf,intConfirmationNumber,strAmendmentDetailsText,vbCrLf,vbCrLf,istrHotelName)]" DisplayName="Send Amendment Mail To The Client" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="[istrMailSubject]" To="aslambeg16@gmail.com">
+                      <ui:SendOutlookMail.Files>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                      </ui:SendOutlookMail.Files>
+                    </ui:SendOutlookMail>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                        </ActivityAction.Argument>
+                        <ui:LogMessage DisplayName="Error-Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;The Email Id is invalid or Not available&quot;]" />
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+              </Sequence>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+          <ui:IfElseIfBlock BlockType="Else">
+            <ui:IfElseIfBlock.Then>
+              <Sequence DisplayName="Body-To Send Cancellation Mail" sap:VirtualizedContainerService.HintSize="499.2,489.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <TryCatch DisplayName="Try Catch-To Check Whether The Email Have Any Error Or Not" sap:VirtualizedContainerService.HintSize="436.8,377.6" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                  <TryCatch.Try>
+                    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[String.Format(istrCancelBody,istrGuestName.Split(&quot; &quot;)(0),vbCrLf,intConfirmationNumber,vbCrLf,vbCrLf,istrHotelName)]" DisplayName="Send Cancellation Mail " sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[istrMailSubject]" To="aslambeg16@gmail.com">
+                      <ui:SendOutlookMail.Files>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                      </ui:SendOutlookMail.Files>
+                    </ui:SendOutlookMail>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                        </ActivityAction.Argument>
+                        <ui:LogMessage DisplayName="Error-Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[&quot;The Email Provided is not valid or unavailable&quot;]" />
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+              </Sequence>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:IfElseIf>
+    <ui:BuildDataTable DataTable="[dtOutputLogFile]" DisplayName="Build Data Table For Log File" sap:VirtualizedContainerService.HintSize="599.2,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;UNIQUE_x0020_ID&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Guest_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Hotel_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;NO._x0020_of_x0020_Adults&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Room_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Booking_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Updated_x0020_Date_x0020_Time&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{istrRefrenceNumber,istrGuestName,istrHotelName,istrNumberOfAdults, istrRoomType,strStatus,System.Text.RegularExpressions.Regex.Match(istrStatusOfMail,&quot;(?&lt;=Booking\s)\w+&quot;).Value,System.DateTime.Now.ToString(&quot;dd-MM-yyyy hh:mm:ss&quot;)}]" DataTable="[dtOutputLogFile]" DisplayName="Add Data Row In Data Table Of Log File" sap:VirtualizedContainerService.HintSize="599.2,188" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+    <ui:AppendRange DataTable="[dtOutputLogFile]" DisplayName="Append Data In Data Table " sap:VirtualizedContainerService.HintSize="599.2,116" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="Sheet1" WorkbookPath="[istrLogFilePath+&quot;\Log File.xlsx&quot;]" />
+    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dtOutputLogFile]" DisplayName="Write Data Table In Excel File" sap:VirtualizedContainerService.HintSize="599.2,116" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="Sheet1" WorkbookPath="[istrLogFilePath+&quot;\Log File.xlsx&quot;]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="outlookFolders.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="599.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="outlookFolders.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="istrStatus">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="System.Text.RegularExpressions.Regex.Match(istrStatusOfMail,&quot;(?&lt;=Booking\s)\w+&quot;).Value" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="istrFolderSuccess">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="iostrFolderSuccess" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="istrFolderFailed">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="iostrFolderFailed" />
+        </InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+  </Sequence>
+</Activity>
